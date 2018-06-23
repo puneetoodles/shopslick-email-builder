@@ -1,0 +1,173 @@
+<div class="campaign-bx">
+  <wizard on-finish="finished()" indicators-position="top" name="customOrderWizard">
+    <wz-step wz-title="Campaign&nbsp;details">
+
+        <div class="col-xs-12 text-right btn-footer-area">
+            <input type="submit" wz-next value="NEXT" class="btn btn-primary" />
+          </div>
+      <div class="steps-content-bx">
+        
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
+            <label>Name</label>
+            <input type="text" class="form-control"/>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
+              <label>Status</label>
+             <select class="form-control">
+                <option value="">--None--</option>
+                <option selected value="Planning">Planning</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+                <option value="Complete">Complete</option>
+             </select>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
+                <label>Campaign Owner</label>
+               <select class="form-control">
+                  <option selected value="1">test</option>
+                  <option value="2">test1</option>
+                  <option value="3">test2</option>
+                  <option value="4">test3</option>
+               </select>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+                  <label>Description</label>
+                  <textarea name="wiz_step1_content" title="Description: " class="form-control" rows="5"></textarea>
+                </div>
+        </div>
+
+
+
+      </div>
+    </wz-step>
+
+
+
+    <wz-step wz-title="Target&nbsp;Audience">
+
+        <div class="col-xs-12 text-right btn-footer-area">
+            <input type="button" wz-previous value="BACK" class="btn btn-primary" />
+            <input type="submit" wz-next value="NEXT" class="btn btn-primary" />
+          </div>
+      <div class="steps-content-bx">
+
+        <div class="row">
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-4">
+
+            <b>Select your target lists for this campaign.</b>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 innerN">
+              <div class="target-list-bx">
+                <label>Add Existing Target List:</label>
+                <select class="form-control">
+                  <option>test</option>
+                  <option>test1</option>
+                  <option>test2</option>
+                </select>
+              </div>
+
+              <div class="target-list-bx">
+                <div class="form-group">
+                  <label>Create New Target List:</label>
+                  <input type="text" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Target List Type:</label>
+                    <select id="target_list_type" name="target_list_type" class="form-control input-sm">
+                        <option selected="" value="default">Default</option>
+                        <option value="seed">Seed</option>
+                        <option value="exempt_domain">Suppression List - By Domain</option>
+                        <option value="exempt_address">Suppression List - By Email Address</option>
+                        <option value="exempt">Suppression List - By Id</option>
+                        <option value="test">Test</option></select>
+                  </div>
+
+                  <div class="col-xs-12 text-right innerN">
+                    <button class="btn btn-primary">Create</button>
+                      <!-- <input type="submit" wz-next value="NEXT" class="btn btn-primary" /> -->
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+          <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-8">
+
+              <div class="view-template-list" style="margin: 25px 0px;width: 100%">
+              <div class="table-responsive">
+                      <table class="table marN">
+                        <thead>
+                          <tr>
+                            <th>Target List Name</th>
+                            <th>Number of target</th>
+                            <th>Target List Type:</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Test</td>
+                            <td>0</td>
+                            <td>Seed</td>
+                            <td>
+                              <i class="fa fa-trash c-pointer trash-ico" ></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+              
+                  </div>
+
+          </div>
+
+        </div>
+        
+      </div>
+    </wz-step>
+
+
+
+    <wz-step wz-title="Select&nbsp;Email&nbsp;Template">
+
+        <div class="col-xs-12 text-right btn-footer-area">
+            <input type="button" wz-previous value="BACK" class="btn btn-primary" />
+            <input type="submit" wz-next value="NEXT" class="btn btn-primary" />
+          </div>
+      <div class="steps-content-bx">
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
+                <label>Select Email Template</label>
+               <select class="form-control">
+                  <option ng-repeat="email in emailTemplates">{{email.name}}</option>
+               </select>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group" style="overflow: hidden; height: 650px">
+              <email-builder-view></email-builder-view> </div>
+
+
+        </div>
+        
+      </div>
+    </wz-step>
+    <wz-step wz-title="Publish">
+        <div class="col-xs-12 text-right btn-footer-area">
+          <input type="button" wz-previous value="BACK" class="btn btn-primary" />
+          <input type="submit" wz-next value="NEXT" class="btn btn-primary" />
+        </div>
+
+      <div class="steps-content-bx">
+        <h3>Campaign is published</h3>
+        
+      </div>
+    </wz-step>
+  </wizard>
+</div>

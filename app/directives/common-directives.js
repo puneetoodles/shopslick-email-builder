@@ -324,4 +324,14 @@
             }
             return $sce.trustAsHtml(html);
         };
-    }])
+    }]).directive('toggleTopMenu', ['$rootScope', function($rootScope) {
+        return {
+            restrict: 'A',
+            link: function($scope, element, attrs) {
+                element.on('click', function(e) {
+                    $(".left-menu").toggleClass("left-menu-hide");
+                    $(".mid-view").toggleClass("show-full-view");
+                 });
+            }
+        };
+      }]);

@@ -1,0 +1,47 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inner15">
+
+   
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 elem-bx">
+       <div class="box-header">Compose Email</div>
+   
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+            <label>Choose Template :</label>
+            <select class="form-control" ng-change="chooseEmail(templateChange)" ng-model="templateChange">
+                <option value="">Select Template</option>
+                    <option ng-repeat="email in emailTemplates" value="{{email.id}}">{{email.name}}</option>
+                 </select>
+        </div>
+    
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+        <label>From : </label>
+        <input type="text" class="form-control"/>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+            <label>To : </label>
+            <input type="text" class="form-control"/>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+                <label>CC : </label>
+                <input type="text" class="form-control"/>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+                    <label>Bcc : </label>
+                    <input type="text" class="form-control"/>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+                        <label>Subject : </label>
+                        <input type="text" class="form-control"/>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+                            <label>Body : </label>
+                        <pre id="ciResponseText">{{view}}</pre>
+                            
+                        </div>
+</div>
+
+</div>

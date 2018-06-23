@@ -1,5 +1,6 @@
-angular.module('email.builder').controller('emailCtrl', ['$scope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables',
-        function ($scope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables) {
+angular.module('email.builder').controller('emailCtrl', ['$scope', '$rootScope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables', '$location',
+        function ($scope, $rootScope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables, $location) {
+            
             /**
              * Sync with store
              */

@@ -28,6 +28,7 @@
     "start": "gulp && NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "angular-wizard": "^1.1.1",
     "connect": "^3.6.2",
     "connect-route": "^0.1.5",
     "event-stream": "^3.3.4",

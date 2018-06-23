@@ -1,14 +1,21 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('email', ['ngRoute', 'email.builder']).config([
-  '$locationProvider',
-  '$routeProvider',
-  function($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
-    $routeProvider.otherwise({redirectTo: '/'});
-  },
-]);
+angular.module('email', ['ngRoute', 'email.builder', 
+'mgo-angular-wizard']).config([
+    '$locationProvider',
+    '$routeProvider',
+
+    function ($locationProvider, $routeProvider) {
+        
+        $locationProvider.hashPrefix('');
+        $routeProvider.otherwise({
+            redirectTo: '/'
+        });
+
+
+    },
+])
 
 /**
  * Email builder module
@@ -22,6 +29,7 @@ angular.module('email.builder', [
     'ngSanitize',
     'ngAlertify',
     'colorpicker.module',
+    'mgo-angular-wizard',
 ])
     /**
      * You can upload custom images
@@ -50,13 +58,35 @@ angular.module('email.builder', [
             $sceDelegateProvider.resourceUrlWhitelist(['self']);
             $compileProvider.debugInfoEnabled(false);
 
+
+            
+
             /**
              * Change '/' with your email builder route
              */
             $routeProvider.when('/', {
-                templateUrl: variables.layoutsPath + '/email-builder.html',
-                controller: 'emailCtrl'
+                templateUrl: variables.layoutsPath + '/email-view.html'
+            }).when('/emailBuilder', {
+                templateUrl: variables.layoutsPath + '/email-view.html'
+            }).when('/viewTemplates', {
+                templateUrl: variables.layoutsPath + '/view-templates.html',
+                controller: 'viewTemplatesCtrl'
+            }).when('/email/:emailID', {
+                templateUrl: variables.layoutsPath + '/email-view.html'
+            }).when('/createCampaign', {
+                templateUrl: variables.layoutsPath + '/create-campaign.html',
+                controller: 'createCampaignCtrl'
+            }).when('/viewCampaign', {
+                templateUrl: variables.layoutsPath + '/view-campaign.html',
+                controller: 'viewCampaignCtrl'
+            }).when('/createEmail', {
+                templateUrl: variables.layoutsPath + '/create-email.html',
+                controller: 'createEmailCtrl'
+            }).when('/viewCreateEmail', {
+                templateUrl: variables.layoutsPath + '/view-create-email.html',
+                controller: 'viewEmailCtrl'
             });
+            
 
             /**
              * Tanslate configurations

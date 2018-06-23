@@ -1,16 +1,16 @@
 #email-builder {
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
+  width: 100%;
+    float: left;
+    height: 100%;
   position: relative;
-  background-color: @primary_color;
+  background-color:#fff;
 
   & > .email-builder-preview-actions {
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: -67px;
+    top: -64px;
     left: 0;
     right: 0;
     z-index: 3;
@@ -22,7 +22,8 @@
 
     &.preview {
       .translate-y(100%);
-      .boxShadowHelper();
+      border-bottom: 1px solid #ddd;
+      //.boxShadowHelper();
     }
   }
 
@@ -33,11 +34,14 @@
     align-items: center;
     z-index: 2;
     position: absolute;
+    height: 60px;
     top: 0;
     left: 0;
     right: 0;
+    background-color: @white;
+    border-bottom: 1px solid #ddd;
     .transition-all();
-    .boxShadowHelper();
+    // .boxShadowHelper();
 
     &.preview {
       .translate-y(-100%);
@@ -52,6 +56,7 @@
     }
 
     &-actions {
+      width: 100%;
       display: flex;
       justify-content: center;
       .md-btn-group + .md-btn-group {
@@ -61,9 +66,10 @@
   }
 
   .email-builder-content {
-    margin-top: 67px;
-    flex: 1;
+    margin-top: 60px;
+    //flex: 1;
     display: flex;
+    height: ~"calc(100% - 60px)";
     overflow: hidden;
     position: relative;
     justify-content: center;
@@ -71,20 +77,21 @@
     & > * {
       flex: 1;
       max-height: 100%;
-      background-color: @primary_color;
       i.material-icons {
         color: @white;
       }
       h3 {
         margin-top: 2px;
-        color: @label_color;
-        font-weight: 100;
+        color: #3062a8;
+        font-weight: bold;
         font-size: 90%;
         text-transform: capitalize;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
       }
       &:first-child {
-        max-width: 280px;
-        padding: 1em 2em;
+        max-width: 150px;
+        padding: 1em 15px;
         box-sizing: border-box;
         .transition-all();
         overflow-x: hidden;
@@ -106,14 +113,15 @@
 
             li {
               display: flex;
+              background: #3062a8;
               flex-direction: column;
               align-items: center;
               padding: 1.3em 0.5em;
-              border: 1px solid @button_border;
+              border: 1px solid #224473;
               margin-bottom: 6px;
               border-radius: 3px;
-              max-width: calc(~"50% - 3px");
-              flex: 1 1 50%;
+              width: 100%;
+              flex: 1 1 100%;
               box-sizing: border-box;
               word-wrap: break-word;
               cursor: move;
@@ -143,7 +151,7 @@
       &:last-child {
         z-index: 1;
         padding: 1rem;
-        width: 300px;
+        width: 280px;
         overflow-y: auto;
         overflow-x: hidden;
         position: absolute;
@@ -220,7 +228,7 @@
               label {
                 display: flex;
                 align-items: center;
-                color: @white;
+                color: #000;
                 font-size: 14px;
                 font-weight: bold;
                 text-transform: capitalize;
@@ -238,7 +246,7 @@
                   border: 1px solid @button_border;
                   border-radius: 2px;
                   background-color: transparent;
-                  color: @label_color;
+                  color: #333;
                   font-weight: bold;
                   transition: all 0.2s ease-in-out;
                   min-width: 82%;
@@ -469,12 +477,12 @@
       }
 
       &.configured {
-        margin-right: 332px;
+        margin-right: 280px;
       }
       .builder {
         display: flex;
         flex: 1 1;
-        padding-top: 0;
+        padding-top: 20px;
         overflow-y: auto;
         position: relative;
 
@@ -603,13 +611,15 @@
   }
 
   button.md-btn-custom {
+    float: left;
+    margin-top: 10px;
+    font-size: 0.857rem;
     background-color: @button_bg_color;
     color: @button_color;
     border: 1px solid @button_border;
-    border-radius: 1px;
     font-weight: 100;
     text-transform: capitalize;
-    padding: 2px 30px;
+    padding: 2px 10px;
 
     &:hover {
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
@@ -617,9 +627,9 @@
 
     &:active,
     &.active {
-      background-color: @button_active_bg_color;
-      color: @button_active_color;
-      border: 1px solid @button_active_border;
+      background-color: #3062a8;
+      color: #fff;
+      border: 1px solid #3062a8;
     }
 
     &.md-btn-sm {

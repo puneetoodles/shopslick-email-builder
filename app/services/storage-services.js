@@ -4,24 +4,28 @@ angular.module('email').factory('storage', ['utils', 'variables', function (util
     var STORAGE_ID = 'Email',
         self = this;
 
+
     self.opts = {
         /**
          * Get Email from localStorage
          */
         get: function () {
-            console.log("get")
+            var emailTemplates = JSON.parse(localStorage.getItem(STORAGE_ID));
             return new Promise(function (resolve, reject) {
                 try {
-                    var email = JSON.parse(localStorage.getItem(STORAGE_ID)) || {
-                        name: variables.defaults.newEmailName,
+                    var emailData = {
+                        name: variables.defaults[0].newEmailName,
                         elements: [],
                         html: '',
+                        id: '',
+                        dateCreated: '',
+                        dateModified: '',
                         emailSettings: {
-                            options: variables.defaults.emailOptions,
+                            options: variables.defaults[0].emailOptions,
                             type: 'emailSettings'
                         }
                     };
-                    resolve(email);
+                    resolve(emailData);
                 } catch (e) {
                     utils.notify(e).error();
                     reject(e);
@@ -36,11 +40,15 @@ angular.module('email').factory('storage', ['utils', 'variables', function (util
          * @returns {Promise}
          */
         put: function (email) {
-            console.log("put working", JSON.stringify(email))
             return new Promise(function (resolve, reject) {
                 try {
                     // Remove multine breaks
-                    email.html = utils.removeLineBreaks(email.html);
+                    //email.html = utils.removeLineBreaks(email.html);
+                    // angular.forEach(email, function(email){
+                    //     console.log("email.html",email.html)
+                    //     email.html = utils.removeLineBreaks(email.html);
+                    //     emailList.push(email);
+                    // })
                     localStorage.setItem(STORAGE_ID, JSON.stringify(email));
                     resolve();
                 } catch (e) {

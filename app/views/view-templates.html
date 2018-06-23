@@ -1,0 +1,42 @@
+<!-- <email-builder-view></email-builder-view> -->
+<div class="view-template-list">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 marT10 marB10 fr">
+            <input class="form-control f12" type="text" placeholder="Search.." ng-model="templateSearch">
+    </div>
+<div class="table-responsive">
+        <table class="table marN">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>Template Name</th>
+              <th>Type</th>
+              <th>Description</th>
+              <th>User</th>
+              <th>Date Modified</th>
+              <th>Date Created</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="email in emailTemplates | filter:templateSearch">
+              <td>
+                  <label class="check_box pull-left" >
+                    <input type="checkbox" name="giftable">
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+              <td>{{email.name}}</td>
+              <td>{{email.type}}</td>
+              <td>{{email.description}}</td>
+              <td>test</td>
+              <td>{{email.dateModified | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+              <td>{{email.dateCreated | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+              <td><a class="fa fa-pencil c-pointer" href="#email/{{email.id}}"></a>
+                <i class="fa fa-trash c-pointer trash-ico" ng-click="remove(email)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>

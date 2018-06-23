@@ -9,17 +9,11 @@
         <i class="md-icon material-icons" ng-click="preview = false">close</i>
     </div>
     <div class="email-builder-header" ng-class="{preview: preview}">
-        <div class="email-builder-header-actions">
-            <h2>Logo</h2>
-            <div class="md-btn-group">
-                <button class="md-btn md-btn-flat md-btn-flat-danger md-btn-small" ng-class="{disabled: currentLanguage == 'en'}" ng-click="changeLanguage('en')">En</button>
-                <button class="md-btn md-btn-flat md-btn-flat-danger md-btn-small" ng-class="{disabled: currentLanguage == 'ru'}" ng-click="changeLanguage('ru')">Ru</button>
-            </div>
-        </div>
+       
 
         <div class="email-builder-header-actions">
             <div class="md-btn-group">
-                <!--<i ng-if="!!currentElement" class="actions md-icon material-icons close md-color-red-600" title="{{'close_element_settings' | translate}}" ng-click="editElement(null)">close</i>-->
+                <i ng-if="!!currentElement" class="actions md-icon material-icons close md-color-red-600" title="{{'close_element_settings' | translate}}" ng-click="editElement(null)">close</i>
                 <i class="actions md-icon material-icons save md-color-green-600" title="{{'email_save' | translate}}" ng-class="{disabled: !hasChanges()}"
                     ng-click="hasChanges() && saveEmailTemplate()">save</i>
                 <i class="actions md-icon material-icons" title="{{'email_settings' | translate}}" ng-class="{disabled: currentElement.type == 'emailSettings'}"
@@ -171,7 +165,7 @@
                                 <label for="{{key}}" ng-if="key == 'color'">{{ 'builder_el_o_text_color' | translateCamelCase }}</label>
                                 <label for="{{key}}" ng-if="key == 'buttonBackgroundColor'">{{ 'builder_el_o_button_bg_color' | translateCamelCase }}</label>
                                 <div class="color-inputs">
-                                    <span>HEX #</span>
+                                    <span>HEX</span>
                                     <color-input class="color-input-container" model="currentElement.options[key]"></color-input>
                                 </div>
                             </div>
@@ -284,10 +278,24 @@
 
                         <div class="block-properties">
                             <div class="form-row text-inputs">
-                                <label for="emailName">{{'email_name' | translate}}</label>
+                                <label for="emailName">{{'template Name' | translate}}</label>
                                 <input type="text" id="emailName" class="md-input" ng-model="Email.name">
                             </div>
                         </div>
+
+                        <div class="block-properties">
+                                <div class="form-row text-inputs">
+                                    <label for="emailName">{{'template Type' | translate}}</label>
+                                    <input type="text" id="emailName" class="md-input" ng-model="Email.type">
+                                </div>
+                            </div>
+
+                            <div class="block-properties">
+                                    <div class="form-row text-inputs">
+                                        <label for="emailName">{{'template Description' | translate}}</label>
+                                        <input type="text" id="emailName" class="md-input" ng-model="Email.description">
+                                    </div>
+                                </div>
 
                         <div class="block-properties">
                             <div class="form-row padding-inputs">
@@ -310,7 +318,7 @@
                             <div class="form-row text-inputs">
                                 <label for="emailSettingsBackground">{{ 'background_color' | translate }}</label>
                                 <div class="color-inputs">
-                                    <span>HEX #</span>
+                                    <span>HEX </span>
                                     <color-input class="color-input-container" model="currentElement.options.backgroundColor"></color-input>
                                 </div>
                             </div>

@@ -28,10 +28,16 @@ var minifyJS = require('gulp-minify');
 var source = {
   js: {
       src: [
-        'app/controllers/email-controller.js',
+        'app/controllers/root-controller.js',
+        'app/controllers/view-email-controller.js',
+        'app/controllers/view-campaign-controller.js',
+        'app/controllers/view-template-controller.js',
+        'app/controllers/create-campaign-controller.js',
+        'app/controllers/create-email-controller.js',
         'app/services/storage-services.js',
         'app/services/utils-services.js',
         'app/directives/common-directives.js',
+        'app/directives/email-builder-directives.js',
       ]
   }
 };
@@ -58,6 +64,7 @@ gulp.task('common_scripts', function() {
       'app/bower_components/alertifyjs/dist/js/ngAlertify.js',
 
       'app/bower_components/angular-dragula/dist/angular-dragula.js',
+      'node_modules/angular-wizard/dist/angular-wizard.min.js',
 
     ])
     .pipe(ngAnnotate())
@@ -81,7 +88,7 @@ gulp.task('watch', function() {
 gulp.task('compile_less', function() {
   return gulp
     .src(
-      `app/css/_dark-theme.less`
+      `app/css/_dark-theme.less`,
     )
     .pipe(less())
     .pipe(

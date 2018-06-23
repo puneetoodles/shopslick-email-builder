@@ -35,7 +35,7 @@ const emailBuilderConfigurations = {
   deleteAllBlocks: true,
   trackEvents: false,
   includeMailchimpMergeTags: false,
-  defaults: {
+  defaults: [{
     newEmailName: 'My new email template',
     emailOptions: {
       paddingTop: '15px',
@@ -44,7 +44,7 @@ const emailBuilderConfigurations = {
       paddingLeft: '10px',
       backgroundColor: '#273142',
     },
-  },
+  }],
   disableBlocks: [],
   blocks: {
     title: {

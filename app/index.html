@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="email">
 <head>
-    <meta charset="utf-8">
+        <meta charset="utf-8">
+        <base href="/">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Shopslick</title>
     <link rel="icon" type="image/png" href="https://image.ibb.co/fN9E0Q/logo_smart.png">
@@ -10,20 +11,30 @@
 
     <meta name="description" content="@builderDescription@">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="app.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 </head>
-<body>
+<body ng-controller="rootCtrl">
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div ng-view></div>
+<div ng-include="'layout/header.html'"></div>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<section class="mid-container">
+
+    <div class="menu-bx left-menu" ng-include="'layout/menu.html'">
+    </div>
+    <div class="mid-view" ng-view></div>
+
+</section>
+
+<script src="jquery.min.js" type="text/javascript"></script>
 <script src="common.min.js"></script>
 
 <!-- inject:js -->
