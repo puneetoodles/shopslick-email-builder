@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('email', ['ngRoute', 'email.builder', 
-'mgo-angular-wizard']).config([
+'mgo-angular-wizard', 'ngTagsInput']).config([
     '$locationProvider',
     '$routeProvider',
 
@@ -30,6 +30,7 @@ angular.module('email.builder', [
     'ngAlertify',
     'colorpicker.module',
     'mgo-angular-wizard',
+    'ngTagsInput'
 ])
     /**
      * You can upload custom images

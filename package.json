@@ -35,6 +35,7 @@
     "gulp-load-plugins": "^1.5.0",
     "gulp-minify": "^3.0.2",
     "mjml": "^3.3.5",
+    "ng-tags-input": "^3.2.0",
     "serve-static": "^1.12.3"
   }
 }

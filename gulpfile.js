@@ -65,6 +65,7 @@ gulp.task('common_scripts', function() {
 
       'app/bower_components/angular-dragula/dist/angular-dragula.js',
       'node_modules/angular-wizard/dist/angular-wizard.min.js',
+      'node_modules/ng-tags-input/build/ng-tags-input.min.js',
 
     ])
     .pipe(ngAnnotate())

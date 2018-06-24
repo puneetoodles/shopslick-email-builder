@@ -1,47 +1,62 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inner15">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inner15 f12">
 
    
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 elem-bx">
        <div class="box-header">Compose Email</div>
    
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-            <label>Choose Template :</label>
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
+            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">Choose Template :</label>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
             <select class="form-control" ng-change="chooseEmail(templateChange)" ng-model="templateChange">
                 <option value="">Select Template</option>
                     <option ng-repeat="email in emailTemplates" value="{{email.id}}">{{email.name}}</option>
                  </select>
+                </div>
         </div>
     
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-        <label>From : </label>
-        <input type="text" class="form-control"/>
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
+        <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">From : </label>
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
+            <tags-input ng-model="fromTags"></tags-input>
+    </div>
     </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-            <label>To : </label>
-            <input type="text" class="form-control"/>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
+            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">To : </label>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
+                <tags-input ng-model="toTags"></tags-input>
+        </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-                <label>CC : </label>
-                <input type="text" class="form-control"/>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
+                <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">CC : </label>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
+                <tags-input ng-model="ccTags"></tags-input></div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-                    <label>Bcc : </label>
-                    <input type="text" class="form-control"/>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
+                    <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">Bcc : </label>
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
+                    <tags-input ng-model="bccTags"></tags-input></div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-                        <label>Subject : </label>
-                        <input type="text" class="form-control"/>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
+                        <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">Subject : </label>
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
+                       <input type="text" class="form-control"/></div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-                            <label>Body : </label>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
+                            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">Body : </label>
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
                         <pre id="ciResponseText">{{view}}</pre>
+                    </div>
                             
                         </div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right inner15 fl">
+<button class="btn btn-primary">Submit</button>
 </div>
 
 </div>
