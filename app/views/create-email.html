@@ -1,62 +1,97 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inner15 f12">
+
+<div id="ribbon">
+    <ul class="marN innerN">
+    <li class="breadcrumb-first">
+              <!-- <a href="http://dev2.shopslick.com/client/">Home</a> -->
+            <a href="#viewCreateEmail/email">
+                      
+                        <span>Email</span>
+                        <i class="fa fa-angle-right ribbon-arrow"></i>
+                    </a></li> 
+              
+            <li><span ng-if="!editMode">Compose Email</span> <span ng-if="editMode">Email</span></li>
+    </ul>
+  </div>
+
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inner15 f12 fl">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 marT10 marB10 fl innerN">
+        <a class="btn btn-primary" ng-class="isMenuActive('email')" href="#createEmail/email" ng-if="editMode">Compose</a>
+        <a class="btn btn-primary" ng-class="isMenuActive('email')" href="#viewCreateEmail/email">Inbox</a>
+        <a class="btn btn-primary" ng-class="isMenuActive('email')" href="#sentEmail/email">Sent</a>
+        </div>
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 marT10 marB10 fr innerN text-right">
+    <a class="btn btn-primary" ng-class="isMenuActive('email')" href="#createEmail/email/{{editId}}" ng-if="editMode" ng-click="reply()">Reply</a>
+</div>
 
    
+<form name="composeForm" ng-submit="submitCompose(compose)">
    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 elem-bx">
-       <div class="box-header">Compose Email</div>
-   
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
-            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">Choose Template :</label>
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
-            <select class="form-control" ng-change="chooseEmail(templateChange)" ng-model="templateChange">
+       <div class="box-header"><span ng-if="!editMode">Compose Email</span> <span ng-if="editMode">Email</span></div>
+   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 fl innerN" style="border-right:1px solid #ddd">
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl innerN">
+            <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">Choose Template : <span class="red-reguired">*</span></label>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">
+            <select class="form-control" ng-disabled="(!editMode || replyMode ) ?  false : true" ng-change="chooseEmail(compose.name)" ng-model="compose.name" required>
                 <option value="">Select Template</option>
                     <option ng-repeat="email in emailTemplates" value="{{email.id}}">{{email.name}}</option>
                  </select>
                 </div>
         </div>
     
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
-        <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">From : </label>
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
-            <tags-input ng-model="fromTags"></tags-input>
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl innerN">
+        <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">From : <span class="red-reguired">*</span></label>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">
+            <tags-input name="fromTags"  ng-disabled="editMode" required ng-model="compose.fromTags" add-on-space="true" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input>
     </div>
     </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
-            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">To : </label>
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
-                <tags-input ng-model="toTags"></tags-input>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl innerN">
+            <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">To : <span class="red-reguired">*</span></label>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">
+                <tags-input ng-model="compose.toTags" ng-disabled="(!editMode || replyMode ) ?  false : true" required  add-on-space="true" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input>
         </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
-                <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">CC : </label>
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
-                <tags-input ng-model="ccTags"></tags-input></div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl innerN">
+                <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">CC : </label>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">
+                <tags-input ng-model="compose.ccTags"  ng-disabled="(!editMode || replyMode ) ?  false : true"  add-on-space="true" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input></div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
-                    <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">Bcc : </label>
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
-                    <tags-input ng-model="bccTags"></tags-input></div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl innerN">
+                    <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">Bcc : </label>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">
+                    <tags-input ng-model="compose.bccTags"  ng-disabled="(!editMode || replyMode ) ?  false : true"  add-on-space="true" allowed-tags-pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></tags-input></div>
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
-                        <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">Subject : </label>
-                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
-                       <input type="text" class="form-control"/></div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl innerN">
+                        <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">Subject : <span class="red-reguired">*</span></label>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">
+                       <input name="subject"  ng-disabled="(!editMode || replyMode ) ?  false : true" required type="text" class="form-control" ng-model="compose.subject"/></div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
-                            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 fl">Body : </label>
-                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 fl">
-                        <pre id="ciResponseText">{{view}}</pre>
-                    </div>
-                            
+                    
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 fl innerN">
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group fl">
+                                <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">Body : </label>
+                                <input type="text" ng-model="compose.body" hidden/>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fl">
+                            <pre id="ciResponseText">{{view}}</pre>
+                        </div>
+                                
+                            </div>
+
                         </div>
 </div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right inner15 fl">
-<button class="btn btn-primary">Submit</button>
+<button class="btn btn-primary" ng-disabled="composeForm.$invalid" ng-if="!editMode || replyMode">Send</button>
 </div>
+
+</form>
 
 </div>

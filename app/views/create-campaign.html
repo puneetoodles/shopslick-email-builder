@@ -1,3 +1,18 @@
+<div id="ribbon">
+    <ul class="marN innerN">
+    <li class="breadcrumb-first">
+              <!-- <a href="http://dev2.shopslick.com/client/">Home</a> -->
+            <a href="#view/Campaign">
+                      
+                        <span>Campaign</span>
+                        <i class="fa fa-angle-right ribbon-arrow"></i>
+                    </a></li> 
+              
+            <li><span>Create Campaign</span></li>
+    </ul>
+    </div>
+
+
 <div class="campaign-bx">
   <wizard on-finish="finished()" indicators-position="top" name="customOrderWizard">
     <wz-step wz-title="Campaign&nbsp;details">
@@ -59,7 +74,7 @@
 
           <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-4">
 
-            <b>Select your target lists for this campaign.</b>
+            <b style="color: #3062a8;font-weight: normal">Select your target lists for this campaign.</b>
 
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 innerN">
               <div class="target-list-bx">
@@ -146,18 +161,94 @@
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
                 <label>Select Email Template</label>
-               <select class="form-control">
-                  <option ng-repeat="email in emailTemplates">{{email.name}}</option>
+               <select class="form-control" ng-change="chooseEmail(campaignTemplate)" ng-model="campaignTemplate">
+                  <option ng-repeat="email in emailTemplates" value="{{email.id}}">{{email.name}}</option>
                </select>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group" style="overflow: hidden; height: 650px">
-              <email-builder-view></email-builder-view> </div>
+              <email-builder-view item-click="myCallback()"></email-builder-view> </div>
 
 
         </div>
         
       </div>
     </wz-step>
+
+
+    <wz-step wz-title="Scheduler&nbsp;Options">
+
+        <div class="col-xs-12 text-right btn-footer-area">
+            <input type="button" wz-previous value="BACK" class="btn btn-primary" />
+            <input type="submit" wz-next value="NEXT" class="btn btn-primary" />
+          </div>
+      <div class="steps-content-bx">
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
+                <label>Start Date</label>
+               <input type="text" class="form-control">
+              </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
+                <label>Select Period</label>
+               <select class="form-control">
+                  <option selected="" value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+               </select>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
+                  <label>Select Frequency</label>
+                 <select class="form-control">
+                    <option value="">Choose Frquency</option>
+                    <option value="once">Occurs Once</option>
+                    <option value="every">Occurs Every</option>
+                 </select>
+                </div>
+
+                <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 form-group">
+                    <label>Frequency</label>
+                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 innerN">
+                     <label class="fl">Occurs Once at </label> <input type="text" class="form-control" style="width: 80px">
+                   </div>
+                  </div> -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+
+            <h2 class="form-title"><span>Frequency</span></h2>
+            <div class="form-bx">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " style="display: none">
+                  <label class="fl frequency-label">Occurs Once at </label> <input type="text" class="form-control wdth80">
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                  <label class="fl frequency-label">Occurs Every </label>
+                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 fl">
+                  <select class="form-control fl wdth80 marR15">
+                    <option value="1">1</option>
+                  </select>
+                  <select class="form-control fl wdth140">
+                      <option value="minutes">Minutes</option>
+                      <option value="minutes">Hours</option>
+                    </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 fl">
+                        <label class="fl frequency-label">Starting at </label> <input type="text" class="form-control wdth80 fl marR15">
+                        <label class="fl frequency-label">Ending at </label> <input type="text" class="form-control wdth80 fl">
+                          </div>
+              </div>
+            </div>
+               
+              </div>
+              
+        </div>
+        
+      </div>
+    </wz-step>
+
+
     <wz-step wz-title="Publish">
         <div class="col-xs-12 text-right btn-footer-area">
           <input type="button" wz-previous value="BACK" class="btn btn-primary" />

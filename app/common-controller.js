@@ -1,22 +1,90 @@
 angular.module('email').controller('rootCtrl', ['$scope', '$location', function ($scope, $location) {
 
     $scope.$on('$viewContentLoaded', function (event) {
-        $scope.isMenuActive = function (page) {
-            var current = $location.path().substring(1);
-            return page === current ? "active" : "";
+        $scope.isMenuActive = function (currentParam) {
+            var getParam = $location.path().substr($location.path().lastIndexOf('/') + 1);
+            return currentParam === getParam ? "active" : "";
         };
 
     });
 }]);
-angular.module('email').controller('viewEmailCtrl', ['$scope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables', '$location',
-        function ($scope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables, $location) {
-           
+angular.module('email').controller('viewEmailCtrl', ['$scope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables', '$location', '$routeParams', '$rootScope',
+        function ($scope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables, $location, $routeParams, $rootScope) {
 
-                $scope.emailTemplates = JSON.parse(localStorage.getItem('Email'));
-                console.log("view semailData", $scope.emailTemplates )
 
-        
-        }]);
+                $scope.checkedArray = [];
+                $scope.showAction = false;
+
+                $scope.emails = JSON.parse(localStorage.getItem('cEmail'));
+
+
+                $scope.checkReadEmail = function (item, index) {
+                        var index = $scope.emails.indexOf(item);
+                        item.selected = false;
+                        item.read = true;
+                        $scope.emails.splice(index, 1, item);
+                        localStorage.setItem('cEmail', JSON.stringify($scope.emails));
+                        $location.path("createEmail/email/" + item.id);
+                        $rootScope.isMenuActive('email')
+                }
+
+                $scope.removeItem = function () {
+                        angular.forEach($scope.checkedArray, function (id) {
+                                angular.forEach($scope.emails, function (item) {
+                                        if (id == item.id) {
+
+                                                var index = $scope.emails.indexOf(item);
+                                                $scope.emails.splice(index, 1);
+
+                                        }
+                                });
+                        });
+
+
+                        localStorage.setItem('cEmail', JSON.stringify($scope.emails));
+                }
+
+
+
+
+                $scope.toggleCheckboxAll = function () {
+                        $scope.checkedArray = [];
+                        var toggleStatus = $scope.isAllSelected;
+                        angular.forEach($scope.emails, function (itm) {
+                                itm.selected = toggleStatus;
+                        });
+                        if ($scope.isAllSelected == true) {
+                                $scope.showAction = true;
+                                angular.forEach($scope.emails, function (itm) {
+                                        $scope.checkedArray.push(itm.id)
+                                });
+                        } else {
+                                $scope.showAction = false;
+                        }
+
+                }
+
+
+                $scope.checkBoxToggled = function (item) {
+
+                        if (item.selected == true) {
+                                $scope.checkedArray.push(item.id);
+                                $scope.showAction = true;
+                        } else {
+                                var index = $scope.checkedArray.indexOf(item);
+                                $scope.checkedArray.splice(index, 1);
+                                $scope.showAction = false;
+
+                        }
+                        $scope.isAllSelected = $scope.emails.every(function (itm) {
+                                return itm.selected;
+                        });
+                }
+
+
+
+        }
+]);
 angular.module('email').controller('viewCampaignCtrl', ['$scope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables', '$location',
         function ($scope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables, $location) {
             
@@ -41,36 +109,117 @@ angular.module('email').controller('viewTemplatesCtrl', ['$scope', 'utils', 'sto
                       }
         
         }]);
-angular.module('email').controller('createCampaignCtrl', ['$scope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables', '$location',
-        function ($scope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables, $location) {
+angular.module('email').controller('createCampaignCtrl', ['$scope', '$rootScope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables', '$location',
+        function ($scope, $rootScope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables, $location) {
             
             $scope.emailTemplates = JSON.parse(localStorage.getItem('Email')); 
+           
 
-        
+              $scope.chooseEmail = function (currentTemplate) {
+                 
+
+                angular.forEach($scope.emailTemplates, function (email) {
+                    if(currentTemplate == email.id){
+                        
+                    }
+                });
+
+              }
+
         
         }
     ]);
-angular.module('email').controller('createEmailCtrl', ['$scope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables', '$location',
-        function ($scope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables, $location) {
+angular.module('email').controller('createEmailCtrl', ['$scope', 'utils', 'storage', 'dragulaService', '$interpolate', '$translate', '$templateCache', 'variables', '$location', '$routeParams',
+        function ($scope, utils, storage, dragulaService, $interpolate, $translate, $templateCache, variables, $location,$routeParams) {
 
+                $scope.editMode = false;
+
+                $scope.replyMode = false;
+                $scope.forwardMode = false;
+              
+               
+                var ciResponseText = document.getElementById('ciResponseText');
+                $scope.editId = $routeParams.emailID;
+
+                if($scope.editId){
+                        $scope.emails = JSON.parse(localStorage.getItem('cEmail'));
+                        angular.forEach($scope.emails, function(email){
+                                if($scope.editId == email.id){
+                                    $scope.compose = email;
+                                    $scope.editMode = true;
+
+                                    ciResponseText.innerHTML = email.body;
+                                }
+                            });
+                       
+                }else{
+
+                        $scope.compose = {
+                                ccTags: '',
+                                bccTags: '',
+                                body: ''
+                        }
+
+                }
+
+                $scope.reply = function(){
+                        $scope.replyMode = true; 
+                }
+
+                $scope.forward = function(){
+                        $scope.forwardMode = false;    
+                }
+                
+                $scope.getExistData = [];
 
                 $scope.emailTemplates = JSON.parse(localStorage.getItem('Email'));
 
 
                 $scope.chooseEmail = function (currentTemplate) {
 
-                        var ciResponseText = document.getElementById('ciResponseText');
                         ciResponseText.innerHTML = '';
                         angular.forEach($scope.emailTemplates, function (email) {
                                 if (currentTemplate == email.id) {
                                         var templateData = JSON.stringify(email.html);
-                                        var template = templateData.replace(/\\n/g, '').replace(/\\"/g, '').replace(" ", "");
-                                        ciResponseText.innerHTML = template;
+                                        var templateData2 = JSON.parse(templateData);
+                                        var template = templateData2.replace(/\\n/g, '').replace(/\\"/g, '').replace(" ", "");
+                                        $scope.compose.body = email.html;
+                                        ciResponseText.innerHTML = email.html;
 
                                 }
 
                         });
 
+                }
+
+
+                $scope.submitCompose = function (data) {
+                        data.read = false;
+                        data.dateCreated = new Date();
+                        data.selected = false;
+                        var timeStamp = new Date(new Date()).getTime();
+                        data.id = "email"+timeStamp;
+                        if (localStorage.getItem("cEmail") != null) {
+                                var getData = JSON.parse(localStorage.getItem('cEmail'));
+                                $scope.getExistData = getData;
+                        }
+                        $scope.getExistData.push(data);
+
+                        localStorage.setItem('cEmail', JSON.stringify($scope.getExistData))
+                        $scope.compose = {};
+                        $scope.composeForm.$setPristine();
+                        ciResponseText.innerHTML = '';
+
+                }
+
+
+                $scope.replySubmit = function(item, index){
+                        var getData = JSON.parse(localStorage.getItem('cEmail'));
+                                $scope.getExistData = getData;
+                        var index = $scope.getExistData.indexOf(item);
+                        item.read = true;
+                        $scope.getExistData.splice(index,1,item);  
+                        localStorage.setItem('cEmail', JSON.stringify($scope.getExistData));
                 }
 
 

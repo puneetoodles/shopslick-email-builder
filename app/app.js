@@ -66,26 +66,33 @@ angular.module('email.builder', [
              * Change '/' with your email builder route
              */
             $routeProvider.when('/', {
+                templateUrl: variables.layoutsPath + '/view-create-email.html',
+                controller: 'viewEmailCtrl'
+            }).when('/emailBuilder/templates', {
                 templateUrl: variables.layoutsPath + '/email-view.html'
-            }).when('/emailBuilder', {
-                templateUrl: variables.layoutsPath + '/email-view.html'
-            }).when('/viewTemplates', {
+            }).when('/viewTemplates/templates', {
                 templateUrl: variables.layoutsPath + '/view-templates.html',
                 controller: 'viewTemplatesCtrl'
             }).when('/email/:emailID', {
                 templateUrl: variables.layoutsPath + '/email-view.html'
-            }).when('/createCampaign', {
+            }).when('/create/Campaign', {
                 templateUrl: variables.layoutsPath + '/create-campaign.html',
                 controller: 'createCampaignCtrl'
-            }).when('/viewCampaign', {
+            }).when('/view/Campaign', {
                 templateUrl: variables.layoutsPath + '/view-campaign.html',
                 controller: 'viewCampaignCtrl'
-            }).when('/createEmail', {
+            }).when('/createEmail/email', {
                 templateUrl: variables.layoutsPath + '/create-email.html',
                 controller: 'createEmailCtrl'
-            }).when('/viewCreateEmail', {
+            }).when('/viewCreateEmail/email', {
                 templateUrl: variables.layoutsPath + '/view-create-email.html',
                 controller: 'viewEmailCtrl'
+            }).when('/sentEmail/email', {
+                templateUrl: variables.layoutsPath + '/sent-create-email.html',
+                controller: 'viewEmailCtrl'
+            }).when('/createEmail/email/:emailID', {
+                templateUrl: variables.layoutsPath + '/create-email.html',
+                controller: 'createEmailCtrl'
             });
             
 

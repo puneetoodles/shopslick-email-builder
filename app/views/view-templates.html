@@ -1,6 +1,26 @@
 <!-- <email-builder-view></email-builder-view> -->
-<div class="view-template-list">
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 marT10 marB10 fr">
+
+<div id="ribbon">
+  <ul class="marN innerN">
+  <li class="breadcrumb-first">
+            <!-- <a href="http://dev2.shopslick.com/client/">Home</a> -->
+          <a href="#viewTemplates/templates">
+                    
+                      <span>Templates</span>
+                      <i class="fa fa-angle-right ribbon-arrow"></i>
+                  </a></li> 
+            
+          <li><span>View Templates</span></li>
+  </ul>
+  </div>
+
+<div class="view-template-list no-bor">
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 marT10 marB10 fl innerN">
+        <a class="btn btn-primary" ng-class="isMenuActive('templates')" href="#emailBuilder/templates">Create Templates</a>
+</div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 marT10 marB10 fr innerN">
             <input class="form-control f12" type="text" placeholder="Search.." ng-model="templateSearch">
     </div>
 <div class="table-responsive">
@@ -18,7 +38,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="email in emailTemplates | filter:templateSearch">
+            <tr ng-repeat="email in emailTemplates | filter:templateSearch | orderBy : '-dateCreated'">
               <td>
                   <label class="check_box pull-left" >
                     <input type="checkbox" name="giftable">

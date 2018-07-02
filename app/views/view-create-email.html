@@ -1,0 +1,60 @@
+<div id="ribbon">
+  <ul class="marN innerN">
+  <li class="breadcrumb-first">
+            <!-- <a href="http://dev2.shopslick.com/client/">Home</a> -->
+          <a href="#viewCreateEmail/email">
+                    
+                      <span>Email</span>
+                      <i class="fa fa-angle-right ribbon-arrow"></i>
+                  </a></li> 
+            
+          <li><span>Inbox</span></li>
+  </ul>
+</div>
+
+<div class="view-template-list no-bor">
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 marT10 marB10 fl innerN">
+        <a class="btn btn-primary" ng-class="isMenuActive('email')" href="#createEmail/email">Compose</a>
+        <a class="btn btn-primary" ng-class="isMenuActive('email')" href="#sentEmail/email">Sent</a>
+</div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 marT10 marB10 fr innerN">
+        <input class="form-control f12" type="text" placeholder="Search.." ng-model="templateSearch">
+    </div>
+<div class="table-responsive relative">
+  <div class="action-bx" ng-if="showAction">
+    <i class="fa fa-trash c-pointer trash-ico dele-ico" ng-click="removeItem()"></i>
+  </div>
+        <table class="table marN">
+          <thead>
+            <tr>
+              <th>
+                  <label class="check_box pull-left">
+                      <input type="checkbox" name="checkbox" ng-click="toggleCheckboxAll()" ng-model="isAllSelected">
+                      <span class="checkmark"></span>
+                    </label>
+              </th>
+              <th>From</th>
+              <th>To</th>
+              <th>Subject</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="c-pointer" ng-repeat="email in emails track by email.id | filter:templateSearch | orderBy : '-dateCreated'" ng-class="{'read-email': email.read == false}" ng-click="checkReadEmail(email, index)">
+              <td >
+                  <label class="check_box pull-left" ng-click="$event.stopPropagation();" >
+                    <input type="checkbox" name="checkbox" ng-model="email.selected" ng-change="checkBoxToggled(email)">
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+              <td><span ng-repeat="from in email.fromTags">{{from.text}}</span></td>
+              <td><span ng-repeat="to in email.toTags">{{to.text}}</span></td>
+              <td>{{email.subject}}</td>
+              <td>{{email.dateCreated | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+             </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>

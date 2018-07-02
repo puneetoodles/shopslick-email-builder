@@ -10,6 +10,29 @@ body,html{
 .f12{
     font-size: 12px !important
 }
+.red-reguired{
+    color: red !important
+}
+.wdth80{
+    width: 80px !important;
+}
+.wdth140{
+    width: 140px !important;
+}
+.marL15{
+    margin-left: 15px !important
+}
+.marR15{
+    margin-right: 15px !important
+}
+ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none
+}
+.innerN-wxs{
+    padding: 0px !important
+}
 select, input{
     height: 32px;
 }
@@ -30,6 +53,9 @@ select, input{
 .text-right{
     text-align: right !important
 }
+.relative{
+    position: relative !important;
+}
 .innerN{
     padding: 0px !important
 }
@@ -44,6 +70,9 @@ select, input{
 }
 .marN{
     margin: 0px !important
+}
+.marR10{
+    margin-right: 10px !important
 }
 .fl{
     float: left;
@@ -69,6 +98,59 @@ header{
 .header-logo img {
     width: 70%;
     margin-top: 4px;
+}
+
+
+
+
+
+#ribbon {
+    height: 33px;
+    border-bottom: 1px solid #ddd;
+    padding: 0 30px;
+    position: relative;
+    width: 100%;
+    float: left;
+    line-height: 33px;
+    font-size: 0.7857rem;
+    background: #fff;
+}
+#ribbon li{ 
+    width: auto;
+    float: left;
+    color: #aaa;
+    text-transform: capitalize;
+}
+#ribbon li a{ 
+    width: auto;
+    float: left;
+    color: #404040;
+    text-decoration: none
+}
+#ribbon li+li span{
+    float: left;
+    color: #404040
+}
+#ribbon li+li:before {
+    content: "";
+    background: url("../img/Arrow.png") no-repeat;
+    width: 7px;
+    height: 11px;
+    padding: 0 5px;
+    color: #ccc;
+    margin-top: 12px;
+    float: left;
+    opacity: 0.5;
+}
+#ribbon li:last-child span{
+    color: #3062a8
+}
+.ribbon-arrow{
+    color: #bbb;
+    font-size: 1.5rem !important;
+    float: right;
+    margin-top: 5px;
+    margin-left: 15px;
 }
 
 .left-menu-hide{
@@ -374,6 +456,50 @@ a.child-menu.show-menu:after {
 }
 
 
+.action-bx{
+    width: ~"calc(100% - 50px)";
+    position: absolute;
+    top: 1px; 
+    right: 1px;
+    height: 36px;
+    background: #fff
+}
+.dele-ico{
+    float: right;
+    margin: 9px 10px;
+    font-size: 1.4rem !important;
+}
+
+
+.form-title{
+    width: 100%;
+    float: left;
+    margin: 0px;
+    font-size: .8rem;
+    position: relative;
+    margin-bottom: 0px;
+    /* border-bottom: 1px solid #ddd; */
+    padding-bottom: 5px;
+    margin-top: 5px;
+    span{
+        background: #fff;
+        float: left;
+        z-index: 1;
+        position: relative;
+        padding-right: 5px;
+        color: #3062a8;
+        font-weight: normal
+    }
+}
+
+.form-bx {
+    width: 100%;
+    float: left;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding: 15px 0px;
+}
+
 
 
 /* checkbox css */
@@ -429,6 +555,12 @@ a.child-menu.show-menu:after {
     float: left;
     margin: 15px;
     border: 1px solid #dee2e6;
+    &.no-bor{
+        border: none !important;
+        table{
+            border: 1px solid #dee2e6;
+        }
+    }
     table{
         font-size: 11px;
         thead{
@@ -597,7 +729,7 @@ tags-input{
     .tags{
         box-shadow: 0px 0px 0px 0 #d3d3d3 inset !important;
         font-size: 0.857rem !important;
-        border: 1px solid #ced4da;
+        border: 1px solid #ced4da !important;
         border-radius: .25rem;
         input{
             font-size: 0.857rem !important;
@@ -613,3 +745,22 @@ tags-input{
         }
     }
 }
+#ciResponseText{
+    line-height: 0px
+}
+.action-icon{
+    color: #3062a8 !important;
+    font-size: 1rem !important
+}
+
+.read-email{
+    font-weight: bold
+}
+
+.frequency-label{
+    margin-right: 15px;
+    padding-top: 5px;
+}
+
+
+
